@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h1>XMLHttpRequest</h1>
+    </body>
+    <script>
+        //instanciar 
+        let xhr = new XMLHttpRequest();
+
+        //abrir a comunicacao
+        xhr.open("GET", "ajax-alunos.json");
+        xhr.send(null)
+        xhr.onreadystatechange = verificaAjax;
+
+        function verificaAjax(){
+            console.log(xhr.readystaty);
+            console.log(xhr.status);
+            if(xhr.status === 200 || xhr.status === 304){
+                console.log(xhr.responseText);
+                let resp = xhr.responseText;
+                resp = JSON.parse(resp)
+                console.log(resp[0]);
+            }else{'erro na resposta'};
+            console.log(xhr);
+            // if(xhr.readyState === 4){
+            //     alert('sucesso na requisicao')
+        }
+        
+
+        //atrelar o evento para receber a resposta
+
+        //verificar quando a resposta esta pronto
+    </script>
+</html>

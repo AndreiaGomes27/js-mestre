@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1>Consulte CEP</h1>
+    </head>
+    <body>
+        <form method="get" action=".">
+            <label>Cep:
+            <input name="cep" type="text" id="cep" value="" size="10" maxlength="9"
+                    input="getCep(this.value)" /></label><br />
+            <label>Rua:
+            <input name="rua" type="text" id="rua" size="60" /></label><br />
+            <label>Numero:
+            <input onFocus name="numero" type="text" id="numero" size="40" /></label><br />
+            <label>Bairro:
+            <input name="bairro" type="text" id="bairro" size="40" /></label><br />
+            <label>Cidade:
+            <input name="cidade" type="text" id="cidade" size="40" /></label><br />
+            <label>Estado:
+            <input name="uf" type="text" id="uf" size="2" /></label><br />
+            
+        </form>
+    </body>
+    <script>
+        let $cep = document.getElementById('cep')
+        $cep.addEventListener('input', function(e){
+            let cep = this.value;
+            cep = cep.replace('-', '');
+            if(cep.length >= 8){
+                const promise = getCep(cep)
+                promise
+                    .then( response => {
+                        console.log('sucesso');
+                        showAddress(response);
+                    })
+                    .catch( err => {
+                        alert("Cep invalido")
+                    
+                })
+            }
+        })
+        async function getCep(cep) {
+            let url = `https://viacep.com.br/ws/${cep}/json/`;
+            const promise = await fetch(url);
+            if(!promise.ok){
+                throw new Error ('Verifique o CEP informado ')
+            }
+            
+            const resp = await promise.json()
+             
+            return resp
+           
+        }
+        
+        function showAddress(address){
+            let rua = document.querySelector('#rua');
+            rua.value = address.logradouro
+            let bairro = document.querySelector('#bairro');
+            bairro.value = address.bairro
+            let cidade = document.querySelector('#cidade');
+            cidade.value = address.localidade
+            let estado = document.querySelector('#uf');
+            estado.value = address.uf
+
+            
+            
+        }
+    </script>
+</html>

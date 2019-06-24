@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        
+    </body>
+    <script>
+    let xhr = new XMLHttpRequest();
+    let url = 'https://jsonplaceholder.typicode.com/users';
+    xhr.open('GET', url);
+    xhr.send(null);
+    xhr.onreadystatechange = verificaAjax;
+
+    function verificaAjax(){
+        console.log(xhr.readyState);
+        console.log(xhr.status);
+
+        if(xhr.readyState === 4){
+            if(xhr.status === 200 || xhr.status === 304) {
+                console.log(xhr.responseText);
+                let resp = xhr.responseText;
+                resp = json.parse(resp);
+
+                
+            }else{
+                alert('erro')
+            }
+        }
+    
+        
+    }
+    </script>
+</html>

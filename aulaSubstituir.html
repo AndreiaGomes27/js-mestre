@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h1>Substituir paragrafos pelo DOM</h1>
+        <p class='par'>primeiro</p>
+        <p class='par'>segundo</p>
+        <p class='par'>terceiro</p>
+        <p class='par'>quarto</p>
+        <script>
+        var paragraph = document.querySelectorAll('p');
+        var x = 0;    
+        while(paragraph[x]){
+            paragraph[x].textContent = x + 'Foi rackeada';
+            x++
+        }
+          
+        
+        
+        </script>
+    </body>
+
+</html>

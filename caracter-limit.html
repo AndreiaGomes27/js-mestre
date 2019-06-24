@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h1>Avisar quando restam poucos caracteres para digitar no textarea</h1>
+        <textarea name="" id="msg" cols="30" rows="10"></textarea>
+    <script>
+        var msg = document.getElementById('msg');
+        msg.addEventListener('keypress', keypress);
+        msg.addEventListener('keyup', keyup);
+        msg.addEventListener('keydown', keydown);
+        msg.addEventListener('input', input);
+
+        function keypress(e){
+            console.log('keyup', this.value)
+        }
+        function keyup(e){
+            console.log('keypress', this.value)
+        }
+        function keydown(e){
+            console.log('keydown', this.value)
+        }
+        function keyup(e){
+            console.log('input', this.value)
+        }
+    </script>
+    </body>
+
+
+</html>
